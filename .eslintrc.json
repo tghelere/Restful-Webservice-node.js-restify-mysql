@@ -2,6 +2,7 @@
     "extends": "standard",
     "rules": {
         "semi": 0,
-        "eol-last": "off"
+        "eol-last": "off",
+        "indent": 0
     }
 }
