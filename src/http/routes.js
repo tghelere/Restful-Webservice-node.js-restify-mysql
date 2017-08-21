@@ -1,17 +1,22 @@
+const categories = require('../services/mysql');
+
 const routes = (server) => {
     server.get('/', (req, res, next) => {
-        res.send('funcionando');
+        res.send('WebService Works!!!');
         next();
     });
 
     server.get('category', (req, res, next) => {
-        res.send(['1', 'lalala']);
-        next();
+        categories.then(categories => {
+            res.send(categories);
+            next();
+        }).catch(error => {
+            res.send(error);
+            next();
+        });
     });
     server.post('category', (req, res, next) => {
-        console.log(req);
-        // const { name } = req.params;
-        var name = req.params.name;
+        const { name } = req.params;
         res.send(name);
         next();
     });
