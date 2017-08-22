@@ -3,6 +3,7 @@
     "rules": {
         "semi": 0,
         "eol-last": "off",
-        "indent": 0
+        "indent": 0,
+        "space-before-function-paren": "off"
     }
 }
