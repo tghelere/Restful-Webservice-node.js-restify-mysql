@@ -1,11 +1,10 @@
 const mysqlServer = require('mysql');
 
-//  Configure the connection and rename this file to 'dbServer.js'
 const connection = mysqlServer.createConnection({
-    host: '',
-    user: '',
-    password: '',
-    database: ''
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE
 });
 
 const errorHandler = (error, msg, rejectFunction) => {
