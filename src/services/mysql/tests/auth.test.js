@@ -15,3 +15,10 @@ test('User login - success', async t => {
     t.not(result.token, null)
     t.not(result.token.length, 0)
 })
+
+test('User login - fail', async t => {
+    await create()
+    const promisse = auth.authenticate('user-error@test.com', '123456')
+    const error = await t.throws(promisse)
+    t.is(error.error, 'Failed to find user')
+})

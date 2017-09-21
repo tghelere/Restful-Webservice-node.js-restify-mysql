@@ -13,13 +13,13 @@ const auth = deps => {
                         return false
                     }
                     const {email, id} = results[0]
-                    const token = jwt.sign({email, id}, 'teste', {expiresIn: 60 * 60 * 24})
-                    resolve({ token });
-                    // resolve({ pagination: { page: 2, results: results.length }, users: results });
-                });
-            });
+                    const token = jwt.sign({email, id}, process.env.JWT_SECRET, {expiresIn: 60 * 60 * 24})
+                    resolve({ token })
+                    // resolve({ pagination: { page: 2, results: results.length }, users: results })
+                })
+            })
         }
     }
 }
 
-module.exports = auth;
+module.exports = auth

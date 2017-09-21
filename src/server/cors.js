@@ -7,4 +7,4 @@ const cors = corsMiddleware({
     exposeHeaders: ['*']
 })
 
-module.exports = cors;
+module.exports = cors
