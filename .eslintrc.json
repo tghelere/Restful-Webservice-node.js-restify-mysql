@@ -1,7 +1,6 @@
 {
     "extends": "standard",
-    "rules": {
-        "semi": 0,
+    "rules": {        
         "eol-last": "off",
         "indent": 0,
         "space-before-function-paren": "off"
