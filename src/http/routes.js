@@ -19,9 +19,9 @@ const routes = (server) => {
         next()
     })
     server.post('category', async(req, res, next) => {
-        const { name } = req.params
+        const { category, description, slug, status } = req.params
         try {
-            res.send(await db.categories().save(name))
+            res.send(await db.categories().save(category, description, slug, status))
         } catch (error) {
             res.send(error)
         }

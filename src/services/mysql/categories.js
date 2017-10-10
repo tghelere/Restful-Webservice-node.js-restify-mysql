@@ -1,3 +1,4 @@
+const slugify = require('../slugify')
 const categories = deps => {
     return {
         all: () => {
@@ -8,36 +9,37 @@ const categories = deps => {
                         errorHandler(error, 'Failed to list categories', reject)
                         return false
                     }
-                    resolve({ categories: results });
-                    // resolve({ pagination: { page: 2, results: results.length }, categories: results });
-                });
-            });
+                    resolve({ categories: results })
+                    // resolve({ pagination: { page: 2, results: results.length }, categories: results })
+                })
+            })
         },
-        save: (name) => {
+        save: (category, description, slug, status) => {
             return new Promise((resolve, reject) => {
                 const { connection, errorHandler } = deps
-                connection.query('INSERT INTO categories (name) VALUES (?)', [name], (error, results) => {
+                slug = slugify(slug)
+                connection.query('INSERT INTO categories (category, description, slug, status) VALUES (?, ?, ?, ?)', [category, description, slug, status], (error, results) => {
                     if (error) {
-                        errorHandler(error, `Failed to save the category ${name}`, reject)
+                        errorHandler(error, `Failed to save the category ${category}`, reject)
                         return false
                     }
-                    resolve({ category: { name, id: results.insertId } });
-                });
-            });
+                    resolve({ category: {id: results.insertId, category, description, slug, status} })
+                })
+            })
         },
-        update: (id, name) => {
+        update: (id, category) => {
             return new Promise((resolve, reject) => {
                 const { connection, errorHandler } = deps
-                connection.query('UPDATE categories SET name = ? WHERE id = ?', [name, id], (error, results) => {
+                connection.query('UPDATE categories SET category = ? WHERE id = ?', [category, id], (error, results) => {
                     if (error || !results.affectedRows) {
-                        errorHandler(error, `Failed to update the category ${name}`, reject)
+                        errorHandler(error, `Failed to update the category ${category}`, reject)
                         return false
                     }
-                    resolve({ category: { name, id }, affectedRows: results.affectedRows });
-                });
-            });
+                    resolve({ category: { category, id }, affectedRows: results.affectedRows })
+                })
+            })
         },
-        del: (id, name) => {
+        del: (id, category) => {
             return new Promise((resolve, reject) => {
                 const { connection, errorHandler } = deps
                 connection.query('DELETE FROM categories WHERE id = ?', [id], (error, results) => {
@@ -45,11 +47,11 @@ const categories = deps => {
                         errorHandler(error, `Failed to delete the category from id = ${id}`, reject)
                         return false
                     }
-                    resolve({ message: 'Category removed successfully', affectedRows: results.affectedRows });
-                });
-            });
+                    resolve({ message: 'Category removed successfully', affectedRows: results.affectedRows })
+                })
+            })
         }
     }
 }
 
-module.exports = categories;
+module.exports = categories

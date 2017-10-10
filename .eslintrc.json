@@ -3,6 +3,6 @@
     "rules": {        
         "eol-last": "off",
         "indent": 0,
-        "space-before-function-paren": "off"
+        "space-before-function-paren": "off"        
     }
 }

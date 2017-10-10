@@ -9,10 +9,10 @@ const users = deps => {
                         errorHandler(error, 'Failed to list users', reject)
                         return false
                     }
-                    resolve({ users: results });
-                    // resolve({ pagination: { page: 2, results: results.length }, users: results });
-                });
-            });
+                    resolve({ users: results })
+                    // resolve({ pagination: { page: 2, results: results.length }, users: results })
+                })
+            })
         },
         save: (email, password) => {
             return new Promise((resolve, reject) => {
@@ -22,9 +22,9 @@ const users = deps => {
                         errorHandler(error, `Failed to save the user ${email}`, reject)
                         return false
                     }
-                    resolve({ user: { email, id: results.insertId } });
-                });
-            });
+                    resolve({ user: { email, id: results.insertId } })
+                })
+            })
         },
         update: (id, password) => {
             return new Promise((resolve, reject) => {
@@ -34,9 +34,9 @@ const users = deps => {
                         errorHandler(error, `Failed to update the user id: ${id}`, reject)
                         return false
                     }
-                    resolve({ user: { id }, affectedRows: results.affectedRows });
-                });
-            });
+                    resolve({ user: { id }, affectedRows: results.affectedRows })
+                })
+            })
         },
         del: (id) => {
             return new Promise((resolve, reject) => {
@@ -46,11 +46,11 @@ const users = deps => {
                         errorHandler(error, `Failed to delete the user from id = ${id}`, reject)
                         return false
                     }
-                    resolve({ message: 'User removed successfully', affectedRows: results.affectedRows });
-                });
-            });
+                    resolve({ message: 'User removed successfully', affectedRows: results.affectedRows })
+                })
+            })
         }
     }
 }
 
-module.exports = users;
+module.exports = users
