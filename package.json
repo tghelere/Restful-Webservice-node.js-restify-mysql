@@ -19,7 +19,7 @@
         "eslint-plugin-node": "^8.0.1",
         "eslint-plugin-promise": "^4.0.1",
         "eslint-plugin-standard": "^4.0.0",
-        "jsonwebtoken": "^8.0.1",
+        "jsonwebtoken": "^9.0.0",
         "mysql": "^2.14.1",
         "restify": "^7.5.0",
         "restify-cors-middleware": "^1.0.1",
